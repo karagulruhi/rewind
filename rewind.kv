@@ -47,3 +47,108 @@
         font_name: "Arial"
         color: (1, 1, 1, 1)
         text_size: (None, None)
+<SecondChapter>:
+    orientation: "vertical"
+    spacing: 50
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+  
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'GÜVENSİZLİK'
+            bold:True
+            pos_hint: {"center_x": 0.87, "center_y": 0.6}
+            background_color: (2, .36, .4, .55)
+          
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'UMUTSUZLUK'
+            bold:True
+            pos_hint: {"center_x": 0.13, "center_y": 0.6}
+            background_color: (2, .36, .4, .55)
+            on_release: root.play_sound()
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'BURAYA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            background_color: (3, .36, .4, .55)
+            on_release: root.play_sound()
+    Label:
+        text: ""
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        id:cpt_2
+        size_hint: (None, None)
+        
+        font_size: 26
+        font_name: "Arial"
+        color: (1, 1, 1, 1)
+        text_size: (None, None)
+
+<ThirdScreen>:
+    orientation: "vertical"
+    spacing: 50
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+  
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'BURAYA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_sound()
+
+<Third_2Screen>:
+    orientation: "vertical"
+    spacing: 50
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+  
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'BURAYA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_sound()

@@ -27,7 +27,7 @@ class Character(Image):
         self.floor_height = 200
         self.screen_width = Window.width
         self.screen_height = Window.height
-        self.pos= 0,self.floor_height
+        self.pos= 810,self.floor_height
         self.current_pos = self.pos 
     def keyboard_on_key_down(self, window, key, code, text, modifiers):
         if key == 276:
@@ -46,6 +46,8 @@ class Character(Image):
 
     def update(self, dt):
         self.current_pos = self.pos 
+        self.sound = None
+
         self.screen_width = Window.width
         self.screen_height = Window.height
         if self.is_jumping:
@@ -73,10 +75,7 @@ class Character(Image):
 class StartScreen(Screen):
     def __init__(self, **kwargs):
         super(StartScreen, self).__init__(**kwargs)
-    def play_sound(self):
-        sound = SoundLoader.load('audios\maz_1.mp3')
-        if sound:
-            sound.play()
+
     def on_leave(self):
         self.clear_widgets()
 class IntroScreen(Screen):
@@ -96,14 +95,14 @@ class IntroScreen(Screen):
 
     def update(self, dt):
         self.character.update(dt)
-        if self.character_pos[0] == int(1620):
+        if self.character_pos[0] == int(820): #1620
            
             self.manager.current = 'second'
 
         
     def play_sound(self):
-        sound = SoundLoader.load('audios\maz_1.mp3')
-        if sound:
+        self.sound = SoundLoader.load('audios\maz_1.mp3')
+        if self.sound:
             with open('texts\chapter1.txt', 'r') as f:
                 text = f.read()
 
@@ -117,26 +116,69 @@ class IntroScreen(Screen):
             # Start a new thread to display the subtitles
             subtitle_thread = threading.Thread(target=display_subtitles)
             subtitle_thread.start()
-            sound.play() 
+            self.sound.play()
+
     def on_leave(self):
         self.clear_widgets()
+        try:
+            self.sound.stop()
+        except:
+            None
 class SecondChapter(Screen):
     def __init__(self, **kwargs):
         super(SecondChapter, self).__init__(**kwargs)            
-
+        
 
     def on_enter(self):
         self.character = Character()
+        self.character_pos = self.character.current_pos
+
         Clock.schedule_interval(self.update, 1.0 / 60.0)
         Window.bind(on_key_down=self.character.keyboard_on_key_down)
         Window.bind(on_key_up=self.character.keyboard_on_key_up)
         self.add_widget(self.character)
-        self.character_pos = self.character.current_pos
+    def play_sound(self):
+        self.sound = SoundLoader.load('audios\maz_2.mp3')
+        if self.sound:
+            with open('texts\chapter2.txt', 'r',encoding="utf-8") as f:
+                text = f.read()
+            print(text)
+            # Define a function to display the subtitles on a separate thread
+            def display_subtitles():
+                chunks = text.split('\n')
+                for chunk in chunks:
+                    self.ids.cpt_2.text = chunk.strip()
+                    time.sleep(2.9)
 
+            # Start a new thread to display the subtitles
+            subtitle_thread = threading.Thread(target=display_subtitles)
+            subtitle_thread.start()
+            self.sound.play()
+    
+      
     def update(self, dt):
         self.character.update(dt)
+        # 
+        if self.character_pos[0] == int(0): #1620
+            self.manager.current = 'third'
+        elif self.character_pos[0] == int(1620):
+            self.manager.current = 'third_2'
+    
+    def on_leave(self):
+        self.clear_widgets()
+        try:
+            self.sound.stop()
+        except:
+            None
+class ThirdChapter(Screen):
+    def __init__(self, **kwargs):
+        super(ThirdChapter, self).__init__(**kwargs)
 
 
+class Third_2Chapter(Screen):
+    def __init__(self, **kwargs):
+        super(ThirdChapter, self).__init__(**kwargs)            
+        
 
 class Rewind(App):
     def build(self):
@@ -146,6 +188,8 @@ class Rewind(App):
         sm.add_widget(StartScreen(name='start'))
         sm.add_widget(IntroScreen(name='intro'))
         sm.add_widget(SecondChapter(name='second'))
+        sm.add_widget(ThirdChapter(name='third'))
+        sm.add_widget(Third_2Chapter(name='third_2'))
         return sm
 
 
