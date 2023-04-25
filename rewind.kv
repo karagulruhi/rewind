@@ -12,7 +12,6 @@
             size_hint: 0.2, 0.2
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             on_press:
-                
                 root.manager.current = 'intro'
                 
 <IntroScreen>:
@@ -31,11 +30,11 @@
         padding:100
         spacing:30
         Button:
-            size_hint:0.1, 0.1
+            size_hint:0.2, 0.1
         
-            text:'TEKRAR DİNLE'
+            text:'BURAYA BAS'
             bold:True
-            pos_hint: {"center_x": 0.9, "center_y": 0.9}
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
             background_color: (1, .36, .4, .55)
             on_release: root.play_sound()
     Label:

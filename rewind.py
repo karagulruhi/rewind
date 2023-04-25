@@ -28,7 +28,7 @@ class Character(Image):
         self.screen_width = Window.width
         self.screen_height = Window.height
         self.pos= 0,self.floor_height
-
+        self.current_pos = self.pos 
     def keyboard_on_key_down(self, window, key, code, text, modifiers):
         if key == 276:
             self.velocity.x = -5
@@ -45,6 +45,7 @@ class Character(Image):
             self.velocity.x = 0
 
     def update(self, dt):
+        self.current_pos = self.pos 
         self.screen_width = Window.width
         self.screen_height = Window.height
         if self.is_jumping:
@@ -66,27 +67,40 @@ class Character(Image):
                 self.pos[1] = 0
             elif self.pos[1] + self.height > self.screen_height:
                 self.pos[1] = self.screen_height - self.height
-        # self.size = (self.screen_width / 3, self.screen_height / 3) # boyutu ekran boyutuna göre değiştir
+ 
+
+
 class StartScreen(Screen):
     def __init__(self, **kwargs):
         super(StartScreen, self).__init__(**kwargs)
-    def play_soundd(self):
+    def play_sound(self):
         sound = SoundLoader.load('audios\maz_1.mp3')
         if sound:
             sound.play()
-
+    def on_leave(self):
+        self.clear_widgets()
 class IntroScreen(Screen):
     def __init__(self, **kwargs):
         super(IntroScreen, self).__init__(**kwargs)
 
         self.oneway = Image(source=('oneway.png'))
         self.add_widget(self.oneway)
- 
-        image = Character()
-        Clock.schedule_interval(image.update, 1.0 / 60.0)
-        Window.bind(on_key_down=image.keyboard_on_key_down)
-        Window.bind(on_key_up=image.keyboard_on_key_up)
-        self.add_widget(image)
+
+    def on_enter(self):
+        self.character = Character()
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
+        Window.bind(on_key_down=self.character.keyboard_on_key_down)
+        Window.bind(on_key_up=self.character.keyboard_on_key_up)
+        self.add_widget(self.character)
+        self.character_pos = self.character.current_pos
+
+    def update(self, dt):
+        self.character.update(dt)
+        if self.character_pos[0] == int(1620):
+           
+            self.manager.current = 'second'
+
+        
     def play_sound(self):
         sound = SoundLoader.load('audios\maz_1.mp3')
         if sound:
@@ -103,9 +117,27 @@ class IntroScreen(Screen):
             # Start a new thread to display the subtitles
             subtitle_thread = threading.Thread(target=display_subtitles)
             subtitle_thread.start()
-            sound.play()  
-            
-   
+            sound.play() 
+    def on_leave(self):
+        self.clear_widgets()
+class SecondChapter(Screen):
+    def __init__(self, **kwargs):
+        super(SecondChapter, self).__init__(**kwargs)            
+
+
+    def on_enter(self):
+        self.character = Character()
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
+        Window.bind(on_key_down=self.character.keyboard_on_key_down)
+        Window.bind(on_key_up=self.character.keyboard_on_key_up)
+        self.add_widget(self.character)
+        self.character_pos = self.character.current_pos
+
+    def update(self, dt):
+        self.character.update(dt)
+
+
+
 class Rewind(App):
     def build(self):
 
@@ -113,8 +145,9 @@ class Rewind(App):
         sm = ScreenManager()
         sm.add_widget(StartScreen(name='start'))
         sm.add_widget(IntroScreen(name='intro'))
-
+        sm.add_widget(SecondChapter(name='second'))
         return sm
+
 
 if __name__ == '__main__':
     Rewind().run()
