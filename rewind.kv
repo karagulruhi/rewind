@@ -81,7 +81,7 @@
             bold:True
             pos_hint: {"center_x": 0.13, "center_y": 0.6}
             background_color: (2, .36, .4, .55)
-            on_release: root.play_sound()
+            
     FloatLayout:
         orientation:'vertical'
         padding:100
@@ -105,31 +105,165 @@
         color: (1, 1, 1, 1)
         text_size: (None, None)
 
-<ThirdScreen>:
-    orientation: "vertical"
-    spacing: 50
-    space_x: self.size[0]/3
-    canvas.before:
-        Color:
-            rgba: (0, 0, 0, 0)
-        Rectangle:
-            size: self.size
-            pos: self.pos
-  
-    FloatLayout:
-        orientation:'vertical'
-        padding:100
-        spacing:30
-        Button:
-            size_hint:0.2, 0.1
-        
-            text:'BURAYA BAS'
-            bold:True
-            pos_hint: {"center_x": 0.5, "center_y": 0.9}
-            background_color: (1, .36, .4, .55)
-            on_release: root.play_sound()
 
-<Third_2Screen>:
+
+<ThirdChapter>:
+    orientation: "vertical"
+    spacing: 50
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+  
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'BURAYA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_sound_1()
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'ŞU KUTUCUK'
+            bold:True
+            pos_hint: {"center_x": 0.3, "center_y": 0.8}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_music()
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'EN SON BUNA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.7, "center_y": 0.8}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_sound_2()
+            
+                
+        Label:
+            text: ""
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            id:cpt_3_4
+            size_hint: (None, None)
+            
+            font_size: 26
+            font_name: "Arial"
+            color: (1, 1, 1, 1)
+            text_size: (None, None)
+
+        
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'ESKİLERE GİDELİM'
+            bold:True
+            pos_hint: {"center_x": 0.13, "center_y": 0.6}
+            background_color: (5, .36, .4, .55)
+            
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'SAL BENİ'
+            bold:True
+            pos_hint: {"center_x": 0.87, "center_y": 0.6}
+            background_color: (5, .36, .4, .55)
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ThirdChapter_2>:
+    orientation: "vertical"
+    spacing: 50
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+  
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'BURAYA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.6, "center_y": 0.9}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_sound()
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'ŞU KUTUCUK'
+            bold:True
+            pos_hint: {"center_x": 0.4, "center_y": 0.8}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_music()
+        Label:
+            text: ""
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            id:cpt_6
+            size_hint: (None, None)
+            
+            font_size: 26
+            font_name: "Arial"
+            color: (1, 1, 1, 1)
+            text_size: (None, None)
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'UFKUMU AÇ'
+            bold:True
+            pos_hint: {"center_x": 0.13, "center_y": 0.6}
+            background_color: (5, .36, .4, .55)
+            
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'ABİ BIRAK YA'
+            bold:True
+            pos_hint: {"center_x": 0.87, "center_y": 0.6}
+            background_color: (5, .36, .4, .55)
+
+
+
+<ForthChapter_1>:
     orientation: "vertical"
     spacing: 50
     space_x: self.size[0]/3
@@ -152,3 +286,119 @@
             pos_hint: {"center_x": 0.5, "center_y": 0.9}
             background_color: (1, .36, .4, .55)
             on_release: root.play_sound()
+    
+
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'THIS IS THE END>>>>>>'
+            bold:True
+            pos_hint: {"center_x": 0.9, "center_y": 0.6}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_music()    
+    Label:
+        text: ""
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        id:cpt_5
+        size_hint: (None, None)
+        
+        font_size: 26
+        font_name: "Arial"
+        color: (1, 1, 1, 1)
+        text_size: (None, None)
+<ForthChapter_2>:
+    orientation: "vertical"
+    spacing: 50
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+  
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'BURAYA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_music()
+
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'THIS IS THE END>>>>>>'
+            bold:True
+            pos_hint: {"center_x": 0.9, "center_y": 0.6}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_music()    
+    Label:
+        text: "BİTTİ Mİ BİZİM HİKAYEMİZ?"
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        id:cpt_5
+        size_hint: (None, None)
+        
+        font_size: 26
+        font_name: "Arial"
+        color: (1, 1, 1, 1)
+        text_size: (None, None)
+<ForthChapter_3>:
+    orientation: "vertical"
+    spacing: 50
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+  
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.2, 0.1
+        
+            text:'BURAYA BAS'
+            bold:True
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_music()
+
+    FloatLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:30
+        Button:
+            size_hint:0.3, 0.1
+        
+            text:'THIS IS THE END>>>>>>'
+            bold:True
+            pos_hint: {"center_x": 0.9, "center_y": 0.6}
+            background_color: (1, .36, .4, .55)
+            on_release: root.play_music()
+    Label:
+        text: "Unutamamanın anlamı ne ise?"
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        id:cpt_7
+        size_hint: (None, None)
+        
+        font_size: 26
+        font_name: "Arial"
+        color: (1, 1, 1, 1)
+        text_size: (None, None)
